@@ -1,0 +1,31 @@
+.wrapperFilter {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 15px;
+	margin: 0;
+}
+
+.labelFilter {
+	display: block;
+	font-weight: 500;
+	font-family: inherit;
+	margin-bottom: 5px;
+	color: #5e4874;
+}
+
+.inputFilter {
+	width: 150px;
+	margin-bottom: 25px;
+	font-weight: 300;
+	border-radius: 3px;
+	border: 1px solid #5e4874;
+	box-shadow: 1px 1px 2px 2px #06463bac;
+}
+
+.inputFilter:focus,
+.inputFilter:hover {
+	outline-color: #5e4874;
+	border-radius: 3px;
+	box-shadow: 0 0 1px 1px #5e4874;
+}
