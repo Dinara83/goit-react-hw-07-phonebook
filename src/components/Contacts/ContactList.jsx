@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDeleteContact } from 'redux/contacts/contacts-operations';
-
 import {
   getAllContacts,
   getFilteredContacts,
@@ -14,8 +13,8 @@ const ContactList = () => {
 
   const dispatch = useDispatch();
 
-  const onDeleteContact = id => {
-    const action = fetchDeleteContact(id);
+  const onDeleteContact = payload => {
+    const action = fetchDeleteContact(payload);
     dispatch(action);
   };
 

@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getImportantContacts } from 'redux/contacts/contacts-selectors';
 import { fetchDeleteContact } from 'redux/contacts/contacts-operations';
-
 import css from './important-contacts-page.module.css';
 
 const ImportantContactsPage = () => {

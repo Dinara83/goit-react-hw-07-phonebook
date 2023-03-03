@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { fetchAddContact } from 'redux/contacts/contacts-operations';
 
-import { fetchAllContacts, fetchAddContact } from 'redux/contacts/contacts-operations';
+import { useDispatch } from 'react-redux';
 
 import inititialState from './inititialState';
 import css from './contact-form.module.css';
@@ -10,10 +10,6 @@ const ContactForm = () => {
   const [state, setState] = useState({ ...inititialState });
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-	dispatch(fetchAllContacts())
-  }, [dispatch]);
 
   const handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
@@ -25,16 +21,11 @@ const ContactForm = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    handleAddContact({ ...state });
+    dispatch(fetchAddContact({ ...state }));
     setState({ ...inititialState });
   };
 
-  const handleAddContact = ({ name, phone, importantContact }) => {
-    const action = fetchAddContact({ name, phone, importantContact });
-    dispatch(action);
-  };
-
-  const { name, phone, importantContact } = state;
+  const { name, phone, newValue, importantContact } = state;
 
   return (
     <form className={css.wrapper} onSubmit={handleSubmit}>
@@ -55,7 +46,7 @@ const ContactForm = () => {
         className={css.input}
         value={phone}
         type="tel"
-        name="number"
+        name="phone"
         onChange={handleChange}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -65,6 +56,7 @@ const ContactForm = () => {
       <label className={css.label}>Important Contact</label>
       <input
         name="importantContact"
+		value={newValue}
         checked={importantContact}
         type="checkbox"
         onChange={handleChange}

@@ -9,12 +9,12 @@ export const getAllContacts = async () => {
   return data;
 };
 
-export const takeContact = async data => {
+export const addContact = async data => {
   const { data: result } = await contactsInstance.post('/', data);
   return result;
 };
 
 export const deleteContact = async id => {
-  const { data } = await contactsInstance.post(`/${id}`);
+  const { data } = await contactsInstance.delete(`/${id}`);
   return data;
 };
